@@ -9,7 +9,9 @@ import {
   Alert,
   Button,
   RefreshControl,
-  Image
+  Image,
+  FlatList,
+  Card
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
@@ -17,22 +19,24 @@ import styles from './Components/Styles'
 import RegisterScreen from './Components/RegisterScreen'
 import LoginScreen from './Components/LoginScreen'
 import CustomizeScreen from './Components/CustomizeScreen'
-import MealScreen from './Components/MealScreen'
-// import MealPlanScreen from './Components/MealPlanScreen'
+import MealListScreen from './Components/MealListScreen'
+
+import MealPlanScreen from './Components/MealPlanScreen'
 
 
-// class MyInfo extends React.Component{
-//   static navigationOptions ={ title: 'MyInfo'}
-//   constructor(props)
-//   {
-//     super(props)
-//     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-//     this.state = {Calories:"", HistoricCalories:""}
-//
-//   }
-//
-//
-// }
+class MyInfo extends React.Component{
+  static navigationOptions ={ title: 'MyInfo'}
+  constructor(props)
+  {
+    super(props)
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {Calories:"", HistoricCalories:""}
+
+  }
+
+
+}
+
 
 class MealPlanScreen extends React.Component {
   //Location  Favorites,foods,home, history, search?
@@ -50,7 +54,7 @@ class MealPlanScreen extends React.Component {
 
   componentDidMount() {
 
-    fetch('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search' + `?query=cum`, {
+    fetch('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search' + `?query=`, {
       headers: {
         "X-Mashape-Key": "iTqnNBvWSamshrNnx4RCtgFVlPuYp1srw8fjsnZerAuAVNTnjb",
         "Accept": "application/json",
@@ -226,11 +230,9 @@ export default StackNavigator({
   MealPlan: {
     screen: MealPlanScreen,
   },
-  Recipe: {
-    screen: RecipeScreen,
-  },
-  Meal: {
-    screen: MealScreen,
+
+  MealList: {
+    screen: MealListScreen,
   },
   Home: {
     screen: HomeScreen,
@@ -238,4 +240,4 @@ export default StackNavigator({
   MyInfo: {
     screen:MyInfoScreen,
   }
-}, {initialRouteName: 'MealPlan'});
+}, {initialRouteName: 'MealList'});
